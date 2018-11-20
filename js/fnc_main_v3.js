@@ -116,6 +116,7 @@ function startup() {
    if (!bln_ProgessBar) fCG(sID, iGM, iGM);
    
    gID('optSelect_all').checked = false;
+   gID('optSelect' + '4').checked = false;
    gID('optSelect' + '5').checked = false;
 }
 
