@@ -18,7 +18,7 @@ a, a:hover {
 	font-size: 15px;
 }
 
-#btn-rawtext {
+#btn-rawtext, #btn-downloadResult {
 	cursor: pointer;
 	color: #f7f7f7;
 	background-color: #700000;
