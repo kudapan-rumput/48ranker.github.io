@@ -534,6 +534,7 @@ function fnc_ShowData() {
       }
 	  if (bln_ResultStyle == 0) {
          gID("ranTable").style.display = 'inline';
+         gID("downloadTable").style.display = 'inline';
       } // v2a
 
 	  // v2a start
@@ -571,6 +572,11 @@ function fnc_ShowData() {
 		
 	  // v2a end	
 
+		html2canvas(document.querySelector("#resultField")).then(canvas => {
+			 var download_btn = document.getElementById("btn-downloadResult");
+			 download_btn.href = canvas.toDataURL();
+		});
+	   
    } else {
       // 判定が終了していない場合、選択肢を更新。
       for (i=0; i<2; i++) {
