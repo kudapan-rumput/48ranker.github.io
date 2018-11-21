@@ -67,14 +67,15 @@ img {
 }
 
 div#resultField {
-    display: block;
-    width: 80%;
-    margin: 0px auto;
+    	display: inline-block;
+    	//width: 80%;
+    	margin: 0px auto;
+	background-color: #050505;
 }
 
 .resTable {
-    display: block;
-    float: left;
+    	display: block;
+    	float: left;
 	font-size:12px;
 	line-height:120%;
 	margin: 0.5em;
