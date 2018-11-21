@@ -18,6 +18,13 @@
 		<meta http-equiv="Cache-Control" content="no-cache">
 		<meta name="author" content="kama">
 		<title>JKT48 Member Rank Battle</title>
+		
+		<meta name="twitter:title" content="JKT48 Member Rank Battle"/>
+		<meta name="twitter:url" content="https://jkt48rank.github.io"/>
+		<meta name="twitter:site" content="@Ideal_Idoling"/>
+		<meta name="twitter:creator" content="@Ideal_Idoling"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/html2canvas.min.js"></script>
 		<script type="text/javascript" src="js/mod_k-factory.js"></script>
@@ -98,5 +105,42 @@
 				<a id="btn-downloadResult" href="" download="result.png">Download Your Result</a>
 			</div>
 		</div>
+		<div id="shareTW" width="640px" class="tb" style="display:none;" align="center">
+			<div>
+				<a id="btn-downloadResult" href="" download="result.png">Share on Twitter!</a>
+			</div>
+		</div>
 	</body>
+	<script>
+		$('#shareTW').click(function () {
+		    var dataURL = $('#resultCanvas')[0].toDataURL("image/png");
+		    $.oauthpopup({
+			path: './auth/twitter.php',
+			callback: function () {
+			    console.log(window.twit);
+			    var data = new FormData();
+			    // Tweet text
+			    data.append('status', "Here is my result of JKT48 Member Rank Battle. Try your own! https://jkt48rank.github.io");
+			    // Binary image
+			    data.append('image', dataURL);
+			    // oAuth Data
+			    data.append('oauth_token', window.twit.oauth_token);
+			    data.append('oauth_token_secret', window.twit.oauth_token_secret);
+			    // Post to Twitter as an update with
+			    return $.ajax({
+				url: './auth/share-on-twitter.php',
+				type: 'POST',
+				data: data,
+				cache: false,
+				processData: false,
+				contentType: false,
+				success: function (data) {
+				    console.log('Posted to Twitter.');
+				    console.log(data);
+				}
+			    });
+			}
+		    });
+		});
+	</script>
 </html>
