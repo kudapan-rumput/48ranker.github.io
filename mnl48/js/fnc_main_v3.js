@@ -117,7 +117,6 @@ function startup() {
    
    gID('optSelect_all').checked = false;
    gID('optSelect' + '3').checked = false;
-   gID('optSelect' + '4').checked = false;
 }
 
 function chgAll() {
@@ -589,13 +588,10 @@ function fnc_ShowData() {
 			obj_Item.onload = function(_e) {
 				var scaler = _e.target.naturalWidth/_e.target.naturalHeight;
 				_e.target.width = 180;
-				console.log(_e.target.width);
 			}
-			console.log(obj_Item.naturalWidth);
-			console.log(obj_Item.width);
             obj_Item.title = obj_TempData[1];
          } else {
-            let obj_Item = cE("span");
+            obj_Item = cE("span");
             obj_Item.appendChild(cT(obj_TempData[1]));
          }
          obj_Item.title = obj_TempData[1];

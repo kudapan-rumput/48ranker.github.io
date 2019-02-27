@@ -580,14 +580,19 @@ function fnc_ShowData() {
    } else {
       // 判定が終了していない場合、選択肢を更新。
       for (i=0; i<2; i++) {
+         let obj_Item;
          var obj_SelectItem = gID((i == 0) ? "fldLeft" : "fldRight");
          var obj_TempData = ary_TempData[ary_SortData[(i == 0)  ? int_LeftList : int_RightList][(i == 0)  ? int_LeftID : int_RightID]];
          if ((obj_TempData[3].length > 0) && gID('optImage').checked) {
-            var obj_Item = cE("img");
+            obj_Item = cE("img");
             obj_Item.src = str_ImgPath + obj_TempData[Math.floor(Math.random() * (obj_TempData.length - 3)) + 3];
+			/*obj_Item.onload = function(_e) {
+				var scaler = _e.target.naturalWidth/_e.target.naturalHeight;
+				_e.target.width = 180;
+			}*/
             obj_Item.title = obj_TempData[1];
          } else {
-            var obj_Item = cE("span");
+            obj_Item = cE("span");
             obj_Item.appendChild(cT(obj_TempData[1]));
          }
          obj_Item.title = obj_TempData[1];
