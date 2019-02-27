@@ -53,6 +53,21 @@ a, a:hover {
   border-bottom-style: solid;
 }
 
+#menubar-mnl48 {
+	position: fixed;
+  color: #f7f7f7;
+	width: 100%;
+	height: 50px;
+	top: 0px;
+	left: 0px;
+	background-color: #003572;
+	z-index: 1;
+  text-align: center;
+  border-bottom-color: #282828;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+}
+
 .menu-item {
   width: 120px;
   height: 100%;
@@ -80,7 +95,7 @@ a, a:hover {
   color: #fff;
 }
 
-.resTable tbody, #fldLeft, #fldMiddleT, #fldRight, #fldMiddleB {
+.resTable tbody, #fldLeft, #fldMiddleT, #fldRight, #fldMiddleB, #fldLeft-mnl48, #fldRight-mnl48 {
   background-color: #0f0f0f;
 }
 
