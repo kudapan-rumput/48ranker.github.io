@@ -16,37 +16,31 @@
 		<meta http-equiv="Content-Style-Type" content="text/css">
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="Cache-Control" content="no-cache">
-		<meta name="author" content="kama">
-		<title>JKT48 Member Rank Battle</title>
+		<meta name="author" content="FUNdamentalist">
+		<title>48 Ranker</title>
 		
-		<meta name="twitter:title" content="JKT48 Member Rank Battle"/>
-		<meta name="twitter:url" content="https://jkt48rank.github.io"/>
+		<meta name="twitter:title" content="48 Ranker"/>
+		<meta name="twitter:url" content="https://48ranker.github.io"/>
 		<meta name="twitter:site" content="@Ideal_Idoling"/>
 		<meta name="twitter:creator" content="@Ideal_Idoling"/>
 		<meta name="twitter:card" content="summary_large_image"/>
 		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/html2canvas.min.js"></script>
-		<script type="text/javascript" src="js/mod_k-factory.js"></script>
-		<script type="text/javascript" src="js/fnc_main_v3.js"></script>
-		<script type="text/javascript" src="js/fnc_data_v2.js"></script>
-		<script type="text/javascript" src="js/op.js"></script>
-		<script type="text/javascript" src="js/src.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/kcs_style.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" href="img/favicon.png" />
 	</head>
 
-	<body onload="startup()">
+	<body>
 
 	  <div id="menubar">
-        <div class="menu-item menu-link" id="menu-restart"><p>Restart</p></div>
-        <div class="menu-item"><p>Battle No. <span id="lblCount">-</span></p></div>
-        <div class="menu-item"><p><span id="lblProgress">0</span>% sorted</p></div>
-        <a href="https://github.com/jkt48rank/jkt48rank.github.io">
+        <a href="https://github.com/48ranker/48ranker.github.io">
           <div class="menu-item menu-link menu-right"><p>Github</p></div>
         </a>
-	    <a href="http://jkt48.com/">
+	    <a href="mnl48/index.html">
+          <div class="menu-item menu-link menu-right"><p>MNL48</p></div>
+        </a>
+	    <a href="jkt48/index.html">
           <div class="menu-item menu-link menu-right"><p>JKT48</p></div>
         </a>
 	  </div>
@@ -62,28 +56,12 @@
 
 				<tbody>
 					<tr>
-						<td id="fldLeft" onclick="fnc_Sort(-1);" rowspan="2"><img src="img/jkt48.png"></td>
+						<td id="fldLeft" onclick="javascript:location.href='jkt48/index.html'" rowspan="2"><img src="img/jkt48.png"></td>
 						<td style="border: 0px; width: 7px;" rowspan="2"></td>
-						<td id="fldMiddleT" onclick="fnc_Sort(0);"><p>JKT48 Member Rank Battle</p>
-						<td style="border: 0px; width: 7px;" rowspan="2"></td>
-						<td id="fldRight" onclick="fnc_Sort(1);" rowspan="2"><img src="img/jkt48.png"></td>
-					</tr>
-					<tr>
-						<td id="fldMiddleB" onclick="fnc_Undo();">Click to start!</td>
+						<td id="fldRight" onclick="javascript:location.href='mnl48/index.html'" rowspan="2"><img src="img/mnl48.jpg"></td>
 					</tr>
 				</tbody>
 
-				<tfoot>
-					<tr>
-						<td colspan="3">
-							<div align="center">
-								<br>
-								<input id="optImage" checked="checked" type="checkbox">
-								<span class="tb_header">Display images while sorting.</span>
-							</div>
-						</td>
-					</tr>
-				</tfoot>
 
 			</table>
 		</div><br>
@@ -92,61 +70,9 @@
 
 		<div id="shareTwitter" width="640px" class="tb" style="display:inline;" align="center">
 			<div>
-				<a id="btn-shareTwitter" href="https://twitter.com/intent/tweet?url=https://jkt48rank.github.io/&text=Check%20out%20your%20own%20version%20of%20JKT48%20member%20rank%20on&hashtags=JKT48MemberRankBattle">Share this on Twitter!</a>
+				<a id="btn-shareTwitter" href="https://twitter.com/intent/tweet?url=https://48ranker.github.io/&text=Check%20out%20your%20own%20version%20of%2048%20Group%20member%20rank%20on&hashtags=48MemberRankBattle">Share this on Twitter!</a>
 			</div>
 		</div>
 		<br>
-		<div id="ranTable" width="640px" class="tb" style="display:none;" align="center">
-			<div>
-				<form>
-					<input id="btn-rawtext" value="Raw Text Results" onclick="OpenWnd()" type="button">
-				</form>
-			</div>
-		</div>
-		<br>
-		<div id="downloadTable" width="640px" class="tb" style="display:none;" align="center">
-			<div>
-				<a id="btn-downloadResult" href="" download="result.png">Download Your Result</a>
-			</div>
-		</div>
-		<div class="style4" id="resultField" style="text-align:center;"><br></div>
-		
-		<div id="shareTW" width="640px" class="tb" style="display:none;" align="center">
-			<div>
-				<a id="btn-downloadResult" href="" download="result.png">Share on Twitter!</a>
-			</div>
-		</div>
 	</body>
-	<script>
-		$('#shareTW').click(function () {
-		    var dataURL = $('#resultCanvas')[0].toDataURL("image/png");
-		    $.oauthpopup({
-			path: './auth/twitter.php',
-			callback: function () {
-			    console.log(window.twit);
-			    var data = new FormData();
-			    // Tweet text
-			    data.append('status', "Here is my result of JKT48 Member Rank Battle. Try your own! https://jkt48rank.github.io");
-			    // Binary image
-			    data.append('image', dataURL);
-			    // oAuth Data
-			    data.append('oauth_token', window.twit.oauth_token);
-			    data.append('oauth_token_secret', window.twit.oauth_token_secret);
-			    // Post to Twitter as an update with
-			    return $.ajax({
-				url: './auth/share-on-twitter.php',
-				type: 'POST',
-				data: data,
-				cache: false,
-				processData: false,
-				contentType: false,
-				success: function (data) {
-				    console.log('Posted to Twitter.');
-				    console.log(data);
-				}
-			    });
-			}
-		    });
-		});
-	</script>
 </html>
